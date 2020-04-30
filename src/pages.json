@@ -1,16 +1,72 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "pages": [
+    //pages数组中第一项表示应用启动页，
+    //参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "分类"
+      }
+    },
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "优购"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "navigationBarTitleText": "购物车"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#eb4450",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "./static/images/tabs/icon_home@3x.png",
+        "selectedIconPath": "./static/images/tabs/icon_home_active@3x.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "./static/images/tabs/icon_category@3x.png",
+        "selectedIconPath": "./static/images/tabs/icon_category_active@3x.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/static/images/tabs/icon_cart@3x.png",
+        "selectedIconPath": "./static/images/tabs/icon_cart_active@3x.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "./static/images/tabs/icon_me@3x.png",
+        "selectedIconPath": "./static/images/tabs/icon_me_active@3x.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTitleText": "妈妈商城",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#eb4450",
+    "backgroundColor": "#F8F8F8"
+  }
 }
