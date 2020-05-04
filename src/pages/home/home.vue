@@ -93,7 +93,7 @@
   }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
     swiper {
         height: 340rpx;
         image {

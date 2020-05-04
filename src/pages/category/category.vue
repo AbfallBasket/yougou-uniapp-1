@@ -4,7 +4,7 @@
         <Search></Search>
 
         <!-- 分类 列表-->
-        <view class="content">
+        <view class="content" v-if="categoriesList.length">
             <view class="left">
                 <view :class="{active:active===index}" class="li" v-for="(item,index) in categoriesList" :key="index"
                 @click="isActive(index)">
@@ -24,7 +24,7 @@
 
                     <!-- 分类 的 数据-->
                     <view class="cate3-wrapper">
-                        <view class="cate3" v-for="(item3,index3) in item2.children" :key="index3">
+                        <view class="cate3" v-for="(item3,index3) in item2.children" :key="index3" @click="toSearchList(item3.cat_name)">
                             <image :src="item3.cat_icon" mode=""></image>
                             <text>{{item3.cat_name}}</text>
                         </view>
@@ -60,13 +60,19 @@
       isActive(index){
         this.active = index
       },
-    //
+    // 请求 分类 数据
      async getCategories(){
         const data = await this.$request({
           url:'/public/v1/categories'
         })
        this.categoriesList = data
        console.log(data)
+      },
+      toSearchList(catName){
+      //  跳转到 搜索列表
+        uni.navigateTo({
+          url:`/pages/searchList/searchList?catName=${catName}`
+        })
       }
     }
   }

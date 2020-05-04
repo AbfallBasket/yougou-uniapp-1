@@ -9,6 +9,14 @@
       }
     },
     {
+      "path": "pages/searchList/searchList",
+      "style": {
+        "navigationBarTitleText": "搜索列表",
+        "enablePullDownRefresh": true,
+        "onReachBottomDistance": 50
+      }
+    },
+    {
       "path": "pages/home/home",
       "style": {
         "navigationBarTitleText": "优购"
