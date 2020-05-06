@@ -13,6 +13,8 @@
 </script>
 
 <style>
+    /*<!-- 引入 icon样式-->*/
+    @import url('/style/icon.css');
 	/*每个页面公共css */
     page {
         color:#333;

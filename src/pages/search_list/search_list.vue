@@ -19,7 +19,8 @@
         <view class="goods-list">
             <view class="goods"
                   v-for="(item, index) in searchList"
-                  :key="index">
+                  :key="index"
+            @click="toDetail(item.goods_id)">
                 <image :src="item.goods_big_logo"
                        alt="" />
                 <view class="right">
@@ -39,7 +40,7 @@
   import SearchList from '@/components/SearchList'
   const PAGE = 10
   export default {
-    name: 'searchList',
+    name: 'search_list',
     components:{
       SearchList
     },
@@ -56,9 +57,7 @@
         // 页面加载 时的 页码
         pagenum:1,
         // 页面数据 是否加载完毕
-        isMaxTotal:false,
-      //  页面数据 是否 在 请求中
-        isRequest:false
+        isMaxTotal:false
       }
     },
     onLoad(options){
@@ -84,8 +83,14 @@
       this.getSearchData(this.query)
     },
     methods:{
+      toDetail(id){
+      //  跳转到 商品详情
+        uni.navigateTo({
+          url:`/pages/detail/detail${id}`
+        })
+      },
       repeatReq(){
-        // 下拉刷新后,要清空 数据 ,否则会 存在数据存留BUG
+        // 请求之后要清空 数据 ,否则会 存在数据叠加存留BUG
         this.searchList = []
       //  由于 每次 加载 数据 都要 重置 所以集中写一个方法
         // 第一次页面加载  第一页
@@ -131,7 +136,8 @@
             query,
             pagenum:this.pagenum,
             pagesize:PAGE
-          }
+          },
+         Loading:true
         })
       if(data.goods.length !== 0){
         // 如果 数据存在则 获取并渲染

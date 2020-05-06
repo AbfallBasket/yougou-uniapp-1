@@ -1,17 +1,21 @@
-const BASE_URL = 'https://api-hmugo-web.itheima.net/api'
+// const BASE_URL = 'https://api-hmugo-web.itheima.net/api'
+const BASE_URL = 'https://ugo.botue.com/api'
 
 const request = (options) => {
 
-  uni.showLoading({
-    title: '数据加载中...',
-    mask: true
-  })
+  if (!options.Loading) {
+    uni.showLoading({
+      title: '数据加载中...',
+      mask: true
+    })
+  }
+
   return new Promise((resolve, reject) => {
     uni.request({
       url: BASE_URL + options.url,
       method: options.method,
-      data:options.data,
-      header:options.header,
+      data: options.data,
+      header: options.header,
       success: (res) => {
         console.log(res)
         const {message, meta} = res.data
@@ -26,7 +30,9 @@ const request = (options) => {
         reject(err)
       },
       complete () {
-        uni.hideLoading()
+        if (!options.Loading) {
+          uni.hideLoading()
+        }
       }
     })
   })
