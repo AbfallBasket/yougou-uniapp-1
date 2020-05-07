@@ -10,9 +10,10 @@
                 indicator-active-color="#fff">
             <block v-for="(item, index) in goodsList.pics"
                    :key="index">
-                <swiper-item>
+                <swiper-item  @click="prevImg(index)">
                     <image class="swiper-img"
-                           :src="item.pics_big"></image>
+                           :src="item.pics_big"
+                   ></image>
                 </swiper-item>
             </block>
         </swiper>
@@ -48,9 +49,8 @@
                       @click="setActiveIndex(index)">{{item}}</text>
             </view>
             <view class="main">
-                <view v-show="!active"
-                      v-html="goodsList.goods_introduce">
-                </view>
+                <rich-text v-show="!active" :nodes="goodsList.goods_introduce">
+                </rich-text>
                 <view v-show="active">
                     商品参数
                 </view>
@@ -82,6 +82,14 @@
       }
     },
     methods:{
+      prevImg(index){
+        const imgArr = this.goodsList.pics.map(v => v.pics_big)
+      //  预览图片
+        uni.previewImage({
+          urls:imgArr,
+          current:index
+        })
+      },
       setActiveIndex(index){
         this.active = index
       },
@@ -100,6 +108,13 @@
       this.goodsId = options.id
       this.getGoodsData()
 
+    },
+    onShareAppMessage(){
+      // 转发定制内容
+      return{
+        title:this.goodsList.goods_name,
+        imageUrl:this.goodsList.pics[0].pics_big
+      }
     }
   }
 </script>

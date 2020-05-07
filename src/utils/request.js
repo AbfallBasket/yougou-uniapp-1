@@ -1,5 +1,6 @@
-// const BASE_URL = 'https://api-hmugo-web.itheima.net/api'
-const BASE_URL = 'https://ugo.botue.com/api'
+const BASE_URL = 'https://api-hmugo-web.itheima.net/api'
+// const BASE_URL = 'https://www.uinav.com/api'
+// const BASE_URL = 'https://ugo.botue.com/api'
 
 const request = (options) => {
 

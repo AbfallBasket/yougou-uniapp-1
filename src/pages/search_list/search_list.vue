@@ -33,6 +33,10 @@
                 </view>
             </view>
         </view>
+        <view class="btm-line"
+              v-show="isMaxTotal">
+            已经没有数据了
+        </view>
     </view>
 </template>
 
@@ -108,27 +112,17 @@
       },
     async  getSearchData(query){
 
-       // 获取数据之前 判断 isMaxTotal
+      // 获取数据之前 判断 isMaxTotal
       // 如果为 true 说明已经加载完所有数据,停止发送请求
-      if(this.isMaxTotal){
-        uni.showToast({
-          title:'一滴数据也没了'
-        })
-        return false
-      }
       // 判断 是否true  如果true
       // 在加载数据中 则 停止 发送请求
-      if(this.isRequest){
-        uni.showToast({
-          title:'数据请求中~~~'
-        })
+      if(this.isMaxTotal || this.isRequest){
         return false
       }
        // 如果 是第一次 加载数据
        // 则设置 为 true 下次 请求数据时,如果上次数据还未
       // 加载 完毕,则会停止重复加载数据
       this.isRequest = true
-
 
        const data = await this.$request({
           url:'/public/v1/goods/search',

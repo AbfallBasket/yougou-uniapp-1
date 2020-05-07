@@ -9,6 +9,12 @@
               type="search"
               size="16">
         </icon>
+        <icon class="clear-icon"
+              type="clear"
+              size="16"
+              color="#ccc" v-show="inputVal" @click="clearVal">
+
+        </icon>
     </view>
 </template>
 
@@ -29,6 +35,9 @@
           // 给父组件传一个search事件，然后传当前的输入框的值
           this.$emit('search', this.inputVal)
         }
+      },
+      clearVal(){
+        this.inputVal = ''
       }
     },
     watch: {
