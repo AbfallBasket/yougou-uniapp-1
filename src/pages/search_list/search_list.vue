@@ -88,9 +88,10 @@
     },
     methods:{
       toDetail(id){
+        console.log('跳转详情')
       //  跳转到 商品详情
         uni.navigateTo({
-          url:`/pages/detail/detail${id}`
+          url:`/pages/detail/detail?id=${id}`
         })
       },
       repeatReq(){

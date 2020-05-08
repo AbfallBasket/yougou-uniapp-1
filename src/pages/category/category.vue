@@ -71,7 +71,7 @@
       toSearchList(catName){
       //  跳转到 搜索列表
         uni.navigateTo({
-          url:`/pages/searchList/searchList?catName=${catName}`
+          url:`/pages/search_list/search_list?catName=${catName}`
         })
       }
     }

@@ -62,16 +62,17 @@
                 <text>联系客服</text>
                 <button open-type="contact">客服</button>
             </view>
-            <view class="icon-text">
+            <view class="icon-text" @click="toCart">
                 <text class="iconfont iconcart"></text>
                 <text>购物车</text>
             </view>
-            <view class="btn add-cart-btn">加入购物车</view>
+            <view class="btn add-cart-btn" @click="addToCart">加入购物车</view>
             <view class="btn buy-btn">立即购买</view>
         </view>
     </view>
 </template>
 <script>
+    const CART = 'cart'
   export default {
     name: 'detail',
     data(){
@@ -82,6 +83,53 @@
       }
     },
     methods:{
+      // addToCart(){
+      //  添加商品 到购物车
+      //   let cart = uni.getStorageSync(CART) || {}
+        // 获取 添加商品 id
+        // let goodsId = this.goodsList.goods_id
+        // 判断是否已经存在 购物车的Stoarge数据中
+        //  不存在则 添加 1个商品
+        // 存在 则数量 +1
+        // cart[goodsId] = {
+        //   checked:true,
+        //   num:(cart[goodsId]) ? (cart[goodsId].num + 1) : 1
+        // }
+        // 存储到Storage
+        // uni.setStorageSync(CART,cart)
+      // },
+      // 数组方式
+      addToCart(){
+        // 添加商品 到购物车
+        let cart = uni.getStorageSync(CART) || []
+
+        // 获取 添加商品 id
+        let goodsId = this.goodsList.goods_id
+
+        let temp = cart.find(item =>{
+          return item.goodsId === goodsId
+        })
+        if(temp){
+          temp.checked = true
+          temp.num = temp.num + 1
+        }else{
+          let newCart = {
+            goodsId,
+            checked:true,
+            num : 1
+          }
+          cart = [newCart,...cart]
+        }
+
+        // 存储到Storage
+        uni.setStorageSync(CART,cart)
+      },
+      toCart(){
+      //  跳转到 购物车
+        uni.switchTab({
+          url:'/pages/cart/cart'
+        })
+      },
       prevImg(index){
         const imgArr = this.goodsList.pics.map(v => v.pics_big)
       //  预览图片

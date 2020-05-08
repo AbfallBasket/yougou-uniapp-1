@@ -66,12 +66,10 @@
         // 保存到 Storage中
         uni.setStorageSync(KEY_LIST,tempKeyList)
 
-        setTimeout(()=>{
           //  跳转到 搜索列表页面
           uni.navigateTo({
             url: `/pages/search_list/search_list?catName=${key}`
           })
-        })
       }
     }
   }

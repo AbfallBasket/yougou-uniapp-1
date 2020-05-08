@@ -1,5 +1,5 @@
 <template>
-    <view class="header">
+    <view class="header" @click="toSearch">
         <view class="inner">
             <icon type="search" size="16">
             </icon>
@@ -10,7 +10,15 @@
 
 <script>
   export default {
-    name: 'Search'
+    name: 'Search',
+    methods:{
+      toSearch(){
+        console.log('dddd')
+        uni.navigateTo({
+          url:'/pages/search/index'
+        })
+      }
+    }
   }
 </script>
 
